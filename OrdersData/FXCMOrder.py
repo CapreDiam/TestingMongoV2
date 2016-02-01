@@ -82,8 +82,8 @@ class FXCMOrder(Order):
                'provider:"' + self.get_provider() + \
                '", id:"' + self.get_id() + \
                '", type:"' + self.get_type() + \
-               '", price:"' + self.get_price() + \
-               '", direction:"' + self.get_direction() + \
+               '", price:' + self.get_price() + \
+               ', direction:"' + self.get_direction() + \
                '", description:"' + self.get_description() + \
                '", currency:"' + self.get_currency() + \
                '", date: new Date("' + self.get_date_time() + '")' + \

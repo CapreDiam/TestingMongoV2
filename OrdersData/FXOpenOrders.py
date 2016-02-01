@@ -123,8 +123,8 @@ class FXOpenOrder(Order):
                'provider:"' + self.get_provider() + \
                '", id:"' + self.get_id() + \
                '", type:"' + self.get_type() + \
-               '", price:"' + str(self.get_price()) + \
-               '", direction:"' + self.get_direction() + \
+               '", price:' + str(self.get_price()) + \
+               ', direction:"' + self.get_direction() + \
                '", currency:"' + self.get_currency() + \
                '", duration:"' + self.get_duration() + \
                '", comment_length:"' + str(self.get_comment_length()) + \

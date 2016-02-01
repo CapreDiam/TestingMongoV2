@@ -4,7 +4,7 @@ from Request.PerfomanceRequest import PerfomanceRequest
 
 
 class RequestSumPriceByProvider(PerfomanceRequest):
-    __providers = ['~', '*']
+    __providers = ['*', '~']
     __result_request = []
     __string_insert_sum_price = "db.orders.aggregate( [ { $match : { provider: " + '"'
     __string_insert_sum_price_second_part = '"' + " } }, { $group: { _id: " + '"' + "$provider" + '"' + ", sum: { $sum: " + \
@@ -23,5 +23,6 @@ class RequestSumPriceByProvider(PerfomanceRequest):
             self.prepare_result(res)
 
     def prepare_result(self, res):
-        result = re.findall(r'\{.+\}', res)
-        self.__result_request.append(result[0])
+        #print "Sum Price By Provider ", res
+        result = re.findall(r': (\S*?) ', res)
+        self.__result_request.append(round(float(result[1]), 2))

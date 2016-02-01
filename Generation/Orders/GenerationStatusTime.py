@@ -18,7 +18,7 @@ class GenerationStatusTime(GenerationFXCMOrder, GenerationFXOpenOrder):
 
 
     def get_date_time(self):
-        now = datetime.datetime.now()
+        now = datetime.datetime.now() + datetime.timedelta(1)
         return now.strftime("%Y-%m-%d %H:%M:%S.%f")
 
     def get_status(self):

@@ -12,11 +12,10 @@ class Launcher:
 
     def starting(self):
         for i in range(len(self.mongo_res)):
-            if self.mongo_res[i] == self.standard_data[i]:
+            if str(self.mongo_res[i]) == str(self.standard_data[i]):
                 print "OK"
             else:
-                print self.mongo_res[i]
-                print self.standard_data[i]
+                print "Mongo ", self.mongo_res[i], " != ", self.standard_data[i]
                 print "Wrong"
 
 

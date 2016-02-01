@@ -6,8 +6,8 @@ from RequestSumPriceByProvider import RequestSumPriceByProvider
 
 class RequestToMongo(RequestByCountStatusID, RequestCountByStatus, RequestSumBetweenDate, RequestSumPriceByProvider):
     __result_request = []
-    __request_to_db = [RequestByCountStatusID(), RequestCountByStatus(), RequestSumBetweenDate(),
-                       RequestSumPriceByProvider()]
+    __request_to_db = [RequestCountByStatus(), RequestByCountStatusID(),
+                       RequestSumPriceByProvider()]# RequestSumBetweenDate()]
 
 
     def get_result_request(self):

@@ -18,11 +18,15 @@ class RequestCountByStatus(PerfomanceRequest):
         return self.__result_request
         
     def __do_request(self):
+        self._PerfomanceRequest__do_request("db.orders.find().sort( { $date: -1} )")
         for i in range(len(self.__statuses)):
             self.prepare_result(self._PerfomanceRequest__do_request(self.__string_insert +
                                                                     self.__statuses[i] +
                                                                     self.__string_insert_count))
 
     def prepare_result(self, res):
-        result = re.findall(r'\n[1-9]+', res)
+        #print "Count By Status",  res
+     #   res.split("/n") r'"(\S*?)"' [1-9]
+        result = re.findall(r'\n(\S*?)\n', res)
+        #print "Count By Status result ",  result[0]
         self.__result_request.append(result[0])

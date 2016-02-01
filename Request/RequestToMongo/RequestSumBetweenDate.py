@@ -1,13 +1,14 @@
 import re
+from datetime import datetime, timedelta
 
 from Request.PerfomanceRequest import PerfomanceRequest
 
 
 class RequestSumBetweenDate(PerfomanceRequest):
     __string_request = "db.orders.aggregate( [ { $match : { date: { $gte: " \
-                      "new Date(" + '"' + "2016" + '-' + "1" + '-' + "15 9:12:24.25" + '"' + "),$lte: " \
-                      "new Date(" + '"' + "2016" + '-' + "1" + '-' + "15 9:12:24.725" + '"' + ") } } }, { $group: { _id:" " null, " \
-                                                                                                                                                                     "count: { $sum: 1 } } } ] )"
+                      "new Date(" + str(datetime.now() - timedelta(25)) + "),$lte: " \
+                      "new Date(" + str(datetime.now() - timedelta(20)) + ") } } }, { $group: { _id:" " null, " \
+                       "count: { $sum: 1 } } } ] )"
     __result_request = []
 
     def __init__(self):
@@ -21,6 +22,6 @@ class RequestSumBetweenDate(PerfomanceRequest):
         self.__prepare_result(self._PerfomanceRequest__do_request(self.__string_request))
 
     def __prepare_result(self, res):
-        print res
+        #print "Date Beetwen", res
         result = re.findall(r'\n\{.+\}', res)
         self.__result_request.append(result)

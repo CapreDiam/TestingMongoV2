@@ -17,18 +17,21 @@ class StandartDataCalc(Tests.Tests):
                 self.__results[3] += 1
             else:
                 self.__results[4] += 1
+                # count id, status order
+            if element.get_id() == generated_data[0].get_id():
+                self.__results[5] += 1
             # sum price for each provider
             if element.get_provider() == "*":
-                self.__results[5] += float(element.get_price())
-            else:
                 self.__results[6] += float(element.get_price())
-            # count id, status order
-            if element.get_id() == generated_data[0].get_id():
-                self.__results[7] += 1
-                # sum price between 2 date
-                #buff_date = datetime.strptime(json_string["date"], '%Y.%m.%d %H:%M:%S.%f')
+            else:
+                self.__results[7] += float(element.get_price())
+            # sum price between 2 date
+            #buff_date = datetime.strptime(json_string["date"], '%Y.%m.%d %H:%M:%S.%f')
             if element.get_date_time() >= element.get_date_time() and element.get_date_time() <= element.get_date_time():
                 self.__results[8] += 1
+        self.__results[6] = round(self.__results[6], 2)
+        self.__results[7] = round(self.__results[7], 2)
 
     def get_result(self):
         return self.__results
+

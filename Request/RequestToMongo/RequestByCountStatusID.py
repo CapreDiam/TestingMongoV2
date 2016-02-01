@@ -22,6 +22,9 @@ class RequestByCountStatusID(PerfomanceRequest):
 
     
     def __prepare_result(self, first_result):
-        result = re.findall(r'[1-9]+\n', first_result)
+        #print "By COunt Status ID OK", first_result
+        result = re.findall(r': (\S*?) ', first_result)
+        #print "By COunt Status ID result ", result[1]
+        #result = re.findall(r'[1-9]+\n', first_result)
        # for i in range(len(result) - 2):
-        self.__result_request.append(result)
+        self.__result_request.append(result[1])

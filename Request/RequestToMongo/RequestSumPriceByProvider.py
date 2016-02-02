@@ -1,14 +1,14 @@
 import re
 
 from Request.PerfomanceRequest import PerfomanceRequest
+from Strings.SingletonString import SingletonString
 
 
 class RequestSumPriceByProvider(PerfomanceRequest):
-    __providers = ['*', '~']
+
+    __strings = SingletonString()
     __result_request = []
-    __string_insert_sum_price = "db.orders.aggregate( [ { $match : { provider: " + '"'
-    __string_insert_sum_price_second_part = '"' + " } }, { $group: { _id: " + '"' + "$provider" + '"' + ", sum: { $sum: " + \
-                                            '"' + "$price" + '"' + " } } } ] )"
+    __providers = ['*', '~']
 
     def __init__(self):
         pass
@@ -19,10 +19,9 @@ class RequestSumPriceByProvider(PerfomanceRequest):
 
     def __do_request(self):
         for i in range(len(self.__providers)):
-            res = self._PerfomanceRequest__do_request(self.__string_insert_sum_price + self.__providers[i] + self.__string_insert_sum_price_second_part)
+            res = self._PerfomanceRequest__do_request(self.__strings.string_insert_sum_price + self.__strings.providers[i] + self.__strings.string_insert_sum_price_second_part)
             self.prepare_result(res)
 
     def prepare_result(self, res):
-        #print "Sum Price By Provider ", res
         result = re.findall(r': (\S*?) ', res)
         self.__result_request.append(round(float(result[1]), 2))

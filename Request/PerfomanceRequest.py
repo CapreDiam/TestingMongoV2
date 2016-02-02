@@ -1,10 +1,9 @@
 import commands
+from Strings.SingletonString import SingletonString
 
 
 class PerfomanceRequest:
-
-    __operation = "echo '{}' > .q && mongo < .q"
-
+    __strings = SingletonString()
 
     def __do_request(self, string_insert):
-        return commands.getoutput(self.__operation.format(string_insert))
+        return commands.getoutput(self.__strings.operation.format(string_insert))

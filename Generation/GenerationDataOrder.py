@@ -4,8 +4,11 @@ from Generation.Orders.GenerationStatusTime import GenerationStatusTime
 from Generation.Insert.GenerationInsert import GenerationInsert
 from TestsBase.StandartDataTests import StandartDataCalc
 from Request.RequestToMongo.RequestToMongo import RequestToMongo
+from Strings.SingletonString import SingletonString
 
 class GenerationDataOrder:
+
+    __string = SingletonString()
 
     def __init__(self):
         self.__fxopen_dict = {}
@@ -14,7 +17,6 @@ class GenerationDataOrder:
         self.__fxcm = FXCMOrder()
         self.__fxopen = FXOpenOrder()
         self.__status_time = GenerationStatusTime()
-        self.__size = 20
         self.__list_orders_fxopen = []
         self.__list_orders_fxcm = []
         self.__list_orders = []
@@ -24,7 +26,7 @@ class GenerationDataOrder:
 
     def __set_fxopen_order(self):
         count = 0
-        for i in range(self.__size):
+        for i in range(self.__string.size):
             self.__fxopen_dict = self.__status_time.get_generated_fxopen()
             self.__status = self.__status_time.get_status()
             for j in range(len(self.__status)):
@@ -49,7 +51,7 @@ class GenerationDataOrder:
 
     def __set_fxcm_order(self):
         count = 0
-        for i in range(self.__size):
+        for i in range(self.__string.size):
             self.__fxcm_dict = self.__status_time.get_generated_fxcm()
             self.__status = self.__status_time.get_status()
             for j in range(len(self.__status)):

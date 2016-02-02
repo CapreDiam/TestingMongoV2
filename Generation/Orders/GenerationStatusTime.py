@@ -5,7 +5,9 @@ from GenerationFXCM import GenerationFXCMOrder
 from GenerationFXOpenOrder import GenerationFXOpenOrder
 
 
+
 class GenerationStatusTime(GenerationFXCMOrder, GenerationFXOpenOrder):
+
     status = [["New", "To Provider", "Partially Filled", "Filled"], ["New", "To Provider", "Filled"],
               ["New", "Filled"], ["New", "Partially Filled", "To Provider", "Filled"],
               ["New", "Partially Filled", "To Provider", "Rejected", "Filled"], ["To Provider"],

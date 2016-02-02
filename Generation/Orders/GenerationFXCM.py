@@ -4,12 +4,17 @@ import uuid
 from GenerationOrder import GenerationOrder
 
 
+
 class GenerationFXCMOrder(GenerationOrder):
+
+
+
     directions = ['sell', 'buy']
     durations = ['Immediate or cancel', 'Good Till Cancel']
     currencys = ['AUD/CHF', 'AUD/JPY', 'AUD/NZD', 'AUD/JPY', 'AUD/JPY', 'AUD/JPY', 'AUD/JPY', 'CAD/JPY', 'CHF/JPY',
                  'EUR/AUD', 'EUR/CAD', 'EUR/CHF', 'EUR/GBP', 'EUR/JPY', 'EUR/NZD', 'GBP/AUD', 'GBP/CHF', 'GBP/JPY',
                  'NZD/JPY', 'EUR/USD', 'GBP/USD', 'AUD/USD', 'NZD/USD', 'USD/JPY', 'USD/CHF', 'USD/CAD']
+
 
 
     def __description_generated(self):
@@ -23,7 +28,7 @@ class GenerationFXCMOrder(GenerationOrder):
 
     def _GenerationOrder__direction_generated(self):
         self.direction = self.directions[random.randint(0, 1)]
-        return self.direction
+        return self.directions[random.randint(0, 1)]
 
     def _GenerationOrder__id_generated(self):
         id = str(uuid.uuid4())

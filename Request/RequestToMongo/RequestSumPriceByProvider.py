@@ -6,7 +6,6 @@ from Strings.SingletonString import SingletonString
 
 class RequestSumPriceByProvider(PerfomanceRequest):
 
-    __strings = SingletonString()
     __result_request = []
     __providers = ['*', '~']
 
@@ -19,7 +18,9 @@ class RequestSumPriceByProvider(PerfomanceRequest):
 
     def __do_request(self):
         for i in range(len(self.__providers)):
-            res = self._PerfomanceRequest__do_request(self.__strings.string_insert_sum_price + self.__strings.providers[i] + self.__strings.string_insert_sum_price_second_part)
+            res = self._PerfomanceRequest__do_request(self._PerfomanceRequest__strings.string_insert_sum_price
+                                                      + self._PerfomanceRequest__strings.providers[i]
+                                                      + self._PerfomanceRequest__strings.string_insert_sum_price_second_part)
             self.prepare_result(res)
 
     def prepare_result(self, res):
